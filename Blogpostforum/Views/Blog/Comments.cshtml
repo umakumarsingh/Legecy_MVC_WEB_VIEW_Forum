@@ -1,0 +1,30 @@
+﻿@model Blogpostforum.Entities.Comment
+@{
+    ViewBag.Title = "Comments";
+}
+
+<div class="card" style="width:60%; margin:auto;">
+    <div class="card-header bg-dark text-white">
+        <h5>Comment on Post</h5>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.CommentMsg)
+                        @Html.TextAreaFor(m => m.CommentMsg, new { autofocus = "", @class = "form-control" })
+                        <span asp-validation-for="CommentMsg" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button class="btn btn-danger" onclick="location.href='@Url.Action("Index", "Blog")';return false;">Back To post</button>
+            </div>
+        }
+    </div>
+</div> 

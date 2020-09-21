@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Blogpostforum.Entities.Comment>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3 class="text-center text-uppercase">Comments</h3>
+<p>
+    @*@Html.ActionLink("New Post", "Create", "Blog", new { @class = "btn btn-primary" })*@
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.CommentMsg)</th>
+            <th>@Html.DisplayNameFor(m => m.CommentedDate)</th>
+            <th>@Html.DisplayNameFor(m => m.PostId)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>@post.CommentMsg</td>
+                <td>@post.CommentedDate</td>
+                <td>@post.PostId</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button class="btn btn-danger" onclick="location.href='@Url.Action("Index", "Blog")';return false;">Back To post</button>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

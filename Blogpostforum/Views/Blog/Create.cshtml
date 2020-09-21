@@ -1,0 +1,46 @@
+﻿@model Blogpostforum.Entities.Post
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="card" style="width:60%; margin:auto;">
+    <div class="card-header bg-dark text-white">
+        <h5>Create New Post</h5>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Title)
+                        @Html.TextBoxFor(m => m.Title, new { autofocus = "", @class = "form-control" })
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Abstract)
+                        @Html.TextAreaFor(m => m.Abstract, new { @class = "form-control" })
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Description)
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+                <button class="btn btn-danger" onclick="location.href='@Url.Action("Index", "Blog")';return false;">Back To post</button>
+            </div>
+        }
+    </div>
+</div> 

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Blogpostforum.Entities.Post>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3 class="text-center text-uppercase">Blog Post</h3>
+<p>
+    @*@Html.ActionLink("New Post", "Create", "Blog", new { @class = "btn btn-primary" })*@
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Blog")';return false;">New Post</button>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.Title)</th>
+            <th>@Html.DisplayNameFor(m => m.Description)</th>
+            <th>@Html.DisplayNameFor(m => m.PostedDate)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>@post.Title</td>
+                <td>@post.Description</td>
+                <td>@post.PostedDate</td>
+            </tr>
+            <tr>
+                <td>@Html.ActionLink("add a comment", "Comments", new { postId = post.PostId }) | @Html.ActionLink("Like", "Like", new { @class = "btn btn-primary" })</td>
+                <td>@Html.ActionLink("User", "Comment", new { @class = "btn btn-primary" }) | @Html.ActionLink("Commented Date", "Comment_Date", new { @class = "btn btn-primary" })</td>
+                <td>@Html.ActionLink("View Comment", "BlogComments", new { postId = post.PostId })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
